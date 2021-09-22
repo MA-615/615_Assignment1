@@ -254,13 +254,18 @@ sp_out</code></pre>
 ## hp   -0.4844811  0.5828450  0.4835389  1.0000000  0.3400314
 ## gear  0.2954459 -0.3898406 -0.4490217  0.3400314  1.0000000</code></pre>
 <pre class="r"><code>#This shows you the mean, variance, covariance, and
-#correlation between the variables mpg, cyl, disp, hp, and #gear.</code></pre>
+#correlation between the variables mpg, cyl, disp, hp, and 
+#gear.</code></pre>
 <pre class="r"><code># library(esquisse)
 # 
 # esquisser(data = mtcars_mpg2, viewer = &quot;browser&quot;)
 
 #Using esquisser allows us to easily manipulate the plot
-#without having to worry about the code. Once we have the #desired plot we can copy the ggplot code into rstudio. #Esquisser can be used in a own browser window, which makes #looking back and forth between r and the esquisser window #very easy.</code></pre>
+#without having to worry about the code. Once we have the 
+#desired plot we can copy the ggplot code into rstudio. 
+#Esquisser can be used in a own browser window, which makes 
+#looking back and forth between r and the esquisser window 
+#very easy.</code></pre>
 <pre class="r"><code>ggplot(mtcars_mpg2) +
   aes(x = disp, y = mpg) +
   geom_point(shape = &quot;bullet&quot;, size = 4L, colour = &quot;#B22222&quot;) +
