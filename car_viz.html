@@ -180,7 +180,8 @@ pre code {
 <div id="reduce-the-variables-to-mpg-cyl-disp-hp-gears" class="section level1">
 <h1>Reduce the variables to mpg, cyl, disp, hp, gears</h1>
 <pre class="r"><code>mtcars_mpg2 &lt;- mtcars_mpg2[, c(1,2,3,4,10)]
-#columns are vectors so we are calling the columns we want by the number vector they are in the data frame</code></pre>
+#columns are vectors so we are calling the columns we want by
+#the number vector they are in the data frame</code></pre>
 </div>
 <div id="read-the-r-file-hand_functions.r-so-that-it-can-be-used" class="section level1">
 <h1>read the R file hand_functions.R so that it can be used</h1>
@@ -252,12 +253,14 @@ sp_out</code></pre>
 ## disp -0.7083614  0.7784989  1.0000000  0.4835389 -0.4490217
 ## hp   -0.4844811  0.5828450  0.4835389  1.0000000  0.3400314
 ## gear  0.2954459 -0.3898406 -0.4490217  0.3400314  1.0000000</code></pre>
-<pre class="r"><code>#This shows you the mean, variance, covariance, and correlation between the variables mpg, cyl, disp, hp, and gear.</code></pre>
+<pre class="r"><code>#This shows you the mean, variance, covariance, and
+#correlation between the variables mpg, cyl, disp, hp, and #gear.</code></pre>
 <pre class="r"><code># library(esquisse)
 # 
 # esquisser(data = mtcars_mpg2, viewer = &quot;browser&quot;)
 
-#Using esquisser allows us to easily manipulate the plot without having to worry about the code. Once we have the desired plot we can copy the ggplot code into rstudio. Esquisser can be used in a own browser window, which makes looking back and forth between r and the esquisser window very easy.</code></pre>
+#Using esquisser allows us to easily manipulate the plot
+#without having to worry about the code. Once we have the #desired plot we can copy the ggplot code into rstudio. #Esquisser can be used in a own browser window, which makes #looking back and forth between r and the esquisser window #very easy.</code></pre>
 <pre class="r"><code>ggplot(mtcars_mpg2) +
   aes(x = disp, y = mpg) +
   geom_point(shape = &quot;bullet&quot;, size = 4L, colour = &quot;#B22222&quot;) +

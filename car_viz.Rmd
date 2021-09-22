@@ -1,6 +1,6 @@
 ---
 title: "car_viz"
-output: pdf_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -23,7 +23,8 @@ mtcars_mpg2 <- mtcars[mtcars$mpg < 20,]
 # Reduce the variables to mpg, cyl, disp, hp, gears
 ```{r}
 mtcars_mpg2 <- mtcars_mpg2[, c(1,2,3,4,10)]
-#columns are vectors so we are calling the columns we want by the number vector they are in the data frame
+#columns are vectors so we are calling the columns we want by
+#the number vector they are in the data frame
 ```
 # read the R file hand_functions.R so that it can be used
 # notice that with echo = TRUE 
@@ -70,7 +71,8 @@ sum_special <- function(df_x){
 
 sp_out
 
-#This shows you the mean, variance, covariance, and correlation between the variables mpg, cyl, disp, hp, and gear.
+#This shows you the mean, variance, covariance, and
+#correlation between the variables mpg, cyl, disp, hp, and #gear.
 ```
 
 
@@ -79,7 +81,8 @@ sp_out
 # 
 # esquisser(data = mtcars_mpg2, viewer = "browser")
 
-#Using esquisser allows us to easily manipulate the plot without having to worry about the code. Once we have the desired plot we can copy the ggplot code into rstudio. Esquisser can be used in a own browser window, which makes looking back and forth between r and the esquisser window very easy.
+#Using esquisser allows us to easily manipulate the plot
+#without having to worry about the code. Once we have the #desired plot we can copy the ggplot code into rstudio. #Esquisser can be used in a own browser window, which makes #looking back and forth between r and the esquisser window #very easy.
 ```
 
 ```{r}
