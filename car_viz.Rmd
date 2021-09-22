@@ -46,6 +46,7 @@ ggplot(mtcars_mpg2) +
 
 # note that this boxplot cannot be made with esquisse() unless
 # the data is adjusted.  What adjustment is needed?
+# We need to use cylinders as the x input rather than disp.
 
 ```{r}
 ggplot(mtcars_mpg2, aes(x=as.factor(cyl), y=mpg)) + 

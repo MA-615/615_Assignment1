@@ -211,6 +211,9 @@ pre code {
 </div>
 <div id="the-data-is-adjusted.-what-adjustment-is-needed" class="section level1">
 <h1>the data is adjusted. What adjustment is needed?</h1>
+</div>
+<div id="we-need-to-use-cylinders-as-the-x-input-rather-than-disp." class="section level1">
+<h1>We need to use cylinders as the x input rather than disp.</h1>
 <pre class="r"><code>ggplot(mtcars_mpg2, aes(x=as.factor(cyl), y=mpg)) + 
   geom_boxplot(fill=&quot;slateblue&quot;, alpha=0.2) + 
   xlab(&quot;cyl&quot;)</code></pre>
