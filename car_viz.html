@@ -174,11 +174,13 @@ pre code {
 </div>
 <div id="select-only-car-models-where-mpg20" class="section level1">
 <h1>Select only car models where mpg&lt;20</h1>
-<pre class="r"><code>mtcars_mpg2 &lt;- mtcars[mtcars$mpg &lt; 20,]</code></pre>
+<pre class="r"><code>mtcars_mpg2 &lt;- mtcars[mtcars$mpg &lt; 20,]
+#use of $ to select the desired column</code></pre>
 </div>
 <div id="reduce-the-variables-to-mpg-cyl-disp-hp-gears" class="section level1">
 <h1>Reduce the variables to mpg, cyl, disp, hp, gears</h1>
-<pre class="r"><code>mtcars_mpg2 &lt;- mtcars_mpg2[, c(1,2,3,4,10)]</code></pre>
+<pre class="r"><code>mtcars_mpg2 &lt;- mtcars_mpg2[, c(1,2,3,4,10)]
+#columns are vectors so we are calling the columns we want by the number vector they are in the data frame</code></pre>
 </div>
 <div id="read-the-r-file-hand_functions.r-so-that-it-can-be-used" class="section level1">
 <h1>read the R file hand_functions.R so that it can be used</h1>
@@ -194,10 +196,68 @@ pre code {
 </div>
 <div id="now-use-the-function-from-hand_functions.r" class="section level1">
 <h1>Now use the function from hand_functions.R</h1>
-<pre class="r"><code>sp_out &lt;- sum_special(mtcars_mpg2)</code></pre>
+<pre class="r"><code>sp_out &lt;- sum_special(mtcars_mpg2)
+
+sum_special &lt;- function(df_x){
+  
+  ## sum_special calculates data summary statistics
+  ## the input param df_x is the data frame of input values
+  
+  #  browser()  # browser() will start the debugger
+               # if the line is uncommented
+  
+  
+  ## test the input data to assure that it is a data frame.
+  try(if(!is.data.frame(df_x)) stop(&quot;Input data must be a data frame.&quot;))
+  
+  
+  sp_means &lt;- apply(df_x, MARGIN = 2, FUN = mean)
+  sp_var &lt;- apply(df_x, MARGIN = 2, FUN = var)
+  sp_cov &lt;- cov(df_x)
+  sp_cor &lt;- cor(df_x)
+  
+  ## Note that defining a list with the 
+  ## syntax list(list_name = list_content) produces
+  ## named list items
+  sp_outputs &lt;- list(sp_means=sp_means, 
+                     sp_var = sp_var, 
+                     sp_cov = sp_cov, 
+                     sp_cor = sp_cor)
+  
+  return(sp_outputs)
+}</code></pre>
+<pre class="r"><code>#call the sp_out list
+
+sp_out</code></pre>
+<pre><code>## $sp_means
+##        mpg        cyl       disp         hp       gear 
+##  15.900000   7.555556 313.811111 191.944444   3.444444 
+## 
+## $sp_var
+##          mpg          cyl         disp           hp         gear 
+##    7.5258824    0.7320261 9438.7645752 3253.5849673    0.6143791 
+## 
+## $sp_cov
+##               mpg        cyl       disp         hp        gear
+## mpg     7.5258824 -1.3176471 -188.79529  -75.81176   0.6352941
+## cyl    -1.3176471  0.7320261   64.71111   28.44444  -0.2614379
+## disp -188.7952941 64.7111111 9438.76458 2679.60065 -34.1934641
+## hp    -75.8117647 28.4444444 2679.60065 3253.58497  15.2026144
+## gear    0.6352941 -0.2614379  -34.19346   15.20261   0.6143791
+## 
+## $sp_cor
+##             mpg        cyl       disp         hp       gear
+## mpg   1.0000000 -0.5613802 -0.7083614 -0.4844811  0.2954459
+## cyl  -0.5613802  1.0000000  0.7784989  0.5828450 -0.3898406
+## disp -0.7083614  0.7784989  1.0000000  0.4835389 -0.4490217
+## hp   -0.4844811  0.5828450  0.4835389  1.0000000  0.3400314
+## gear  0.2954459 -0.3898406 -0.4490217  0.3400314  1.0000000</code></pre>
+<pre class="r"><code>#This shows you the mean, variance, covariance, and correlation between the variables mpg, cyl, disp, hp, and gear.</code></pre>
 <pre class="r"><code># library(esquisse)
 # 
-# esquisser(data = mtcars_mpg2, viewer = &quot;browser&quot;)</code></pre>
+# esquisser(data = mtcars_mpg2, viewer = &quot;browser&quot;)
+
+#Using esquisser allows us to easily manipulate the plot without having to worry about the code. Once we have the desired plot we can copy the ggplot code into rstudio. Esquisser can be used in a own browser window, which makes looking back and forth between r and the esquisser window very easy.</code></pre>
 <pre class="r"><code>ggplot(mtcars_mpg2) +
   aes(x = disp, y = mpg) +
   geom_point(shape = &quot;bullet&quot;, size = 4L, colour = &quot;#B22222&quot;) +
@@ -212,8 +272,8 @@ pre code {
 <div id="the-data-is-adjusted.-what-adjustment-is-needed" class="section level1">
 <h1>the data is adjusted. What adjustment is needed?</h1>
 </div>
-<div id="we-need-to-use-cylinders-as-the-x-input-rather-than-disp." class="section level1">
-<h1>We need to use cylinders as the x input rather than disp.</h1>
+<div id="we-need-to-use-cylinders-as-the-x-input-rather-than-disp-and-used-the-data-set-mtcars_mpg2-which-is-a-subset-of-mtcars-that-only-includes-car-models-where-mpg20." class="section level1">
+<h1>We need to use cylinders as the x input rather than disp, and used the data set mtcars_mpg2 which is a subset of mtcars that only includes car models where mpg&lt;20.</h1>
 <pre class="r"><code>ggplot(mtcars_mpg2, aes(x=as.factor(cyl), y=mpg)) + 
   geom_boxplot(fill=&quot;slateblue&quot;, alpha=0.2) + 
   xlab(&quot;cyl&quot;)</code></pre>
